@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CaptainHook.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
