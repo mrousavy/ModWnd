@@ -1,15 +1,19 @@
 #include "MoveManager.h"
+#include "CaptainHook.h"
 #include <iostream>
 #include <Windows.h>
 
 
 int main(int argc, char** argv)
 {
-	// Hide the Console Window
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
-
+	// Print Init Message
 	std::cout << "Initializing ModWnd.." << std::endl;
+
+	// Hide the Console Window
+	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 	
+	CaptainHook hook(VK_MENU);
+	hook.start();
 
 	getchar();
 	return 0;
