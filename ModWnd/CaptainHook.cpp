@@ -9,16 +9,23 @@ CaptainHook::CaptainHook(int key)
 
 CaptainHook::~CaptainHook()
 {
+	stop();
 }
 
 void CaptainHook::start()
 {
+	run_flag = true;
 	loop();
+}
+
+void CaptainHook::stop()
+{
+	run_flag = false;
 }
 
 void CaptainHook::loop()
 {
-	while (true)
+	while (run_flag)
 	{
 		if (GetKeyState(hotkey) & 0x8000)
 		{

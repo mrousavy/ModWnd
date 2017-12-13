@@ -10,10 +10,14 @@ public:
 	~CaptainHook();
 	/// \brief Start the hook loop (blocking forever)
 	void start();
+	/// \brief Stop the hook loop
+	void stop();
 	/// \brief The Hotkey to bind to
 	int hotkey;
 private:
 	/// \brief The loop for button & mouse checking
 	void loop();
+	/// \brief Flag indicating the loop should still run
+	bool run_flag = true;
 };
 
