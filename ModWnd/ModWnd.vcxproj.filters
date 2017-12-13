@@ -15,17 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CaptainHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CaptainHook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MoveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

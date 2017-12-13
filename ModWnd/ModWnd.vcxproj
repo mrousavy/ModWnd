@@ -111,11 +111,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CaptainHook.h" />
     <ClInclude Include="MoveManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CaptainHook.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveManager.cpp" />
   </ItemGroup>

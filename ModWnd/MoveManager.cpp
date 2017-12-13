@@ -2,8 +2,7 @@
 
 
 
-move_manager::move_manager(const LPVOID param)
-	: hook_(param)
+move_manager::move_manager()
 {
 }
 
