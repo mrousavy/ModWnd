@@ -11,6 +11,8 @@ inline void move_wnd(const HWND window, const int x, const int y)
 	GetWindowRect(window, &rect);
 	const int width = rect.right - rect.left;
 	const int height = rect.bottom - rect.top;
+	const int to_x = x + (x - rect.left);
+	const int to_y = y + (y - rect.top);
 
-	MoveWindow(window, x, y, width, height, true);
+	MoveWindow(window, to_x, to_y, width, height, true);
 }
