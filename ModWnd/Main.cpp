@@ -22,16 +22,16 @@ int main(const int argc, char** argv)
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	captain_hook hook(hotkey);
-	hook.start();	//TODO: BLOCKING
-	hook.register_m();
-	
-	MSG msg;
-	// Create a Message Loop for the low level mouse hook
-	while (GetMessage(&msg, nullptr, 0, 0))
-	{
-		// Dispatch & Forward current message
-		DispatchMessage(&msg);
-	}
+	hook.start(); //TODO:
+	//hook.register_m();
+	//
+	//MSG msg;
+	//// Create a Message Loop for the low level mouse hook
+	//while (GetMessage(&msg, nullptr, 0, 0))
+	//{
+	//	// Dispatch & Forward current message
+	//	DispatchMessage(&msg);
+	//}
 
 
 

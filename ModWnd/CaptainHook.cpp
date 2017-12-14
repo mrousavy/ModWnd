@@ -49,8 +49,9 @@ void captain_hook::loop() const
 				EnableWindow(window, false); // Disable click passthrough
 				while (is_down())	// Loop on held down
 				{
-					move_wnd(window, point.x, point.y);	// Move window to ...
+					move_wnd(window, point);	// Move window to ...
 					if (!GetCursorPos(&point)) break;	// Update cursor position
+					//Sleep(1);
 				}
 				EnableWindow(window, true);	// Enable click passthrough
 			}

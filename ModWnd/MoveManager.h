@@ -3,16 +3,18 @@
 
 /// \brief Move the given Window (by handle) to the specified position
 /// \param window A handle to the Window
-/// \param x The X coordinate in pixels
-/// \param y The Y coordinate in pixels
-inline void move_wnd(const HWND window, const int x, const int y)
+/// \param mouse The X and Y coordinates of the Mouse cursor
+inline void move_wnd(const HWND window, const POINT mouse)
 {
 	RECT rect;
 	GetWindowRect(window, &rect);
 
-	const int to_x = x + x - rect.left;
-	const int to_y = y + y - rect.top;
+	POINT client_point(mouse);
+	ScreenToClient(window, &client_point);
+
+	const int to_x = mouse.x + client_point.x;
+	const int to_y = mouse.y + client_point.y;
 
 	//SetWindowPos(window, nullptr, to_x, to_y, 0, 0, SWP_NOREDRAW | SWP_NOSIZE);
-	MoveWindow(window, to_x, to_y, rect.right - rect.left, rect.bottom - rect.top, true);
+	MoveWindow(window, to_x, to_y, rect.right - rect.left, rect.bottom - rect.top, false);
 }
