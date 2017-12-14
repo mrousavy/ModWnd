@@ -13,6 +13,8 @@ public:
 	void start();
 	/// \brief Stop the hook loop
 	void stop();
+	/// \brief Re-hook the mouse hook and refresh (required every x seconds by windows policy)
+	void rehook();
 	/// \brief Register mouse hook
 	static void register_m();
 	/// \brief The Hotkey to bind to

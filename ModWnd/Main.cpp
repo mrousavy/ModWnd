@@ -22,13 +22,17 @@ int main(const int argc, char** argv)
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	captain_hook hook(hotkey);
-	std::thread thread([&hook]()
+	hook.register_m();
+	
+	MSG msg;
+	// Create a Message Loop for the low level mouse hook
+	while (GetMessage(&msg, nullptr, 0, 0))
 	{
-		// TODO: 
-		SetPriorityClass(GetCurrentThread(), REALTIME_PRIORITY_CLASS);
-		hook.register_m();
-	});
-	hook.start();
+		// Dispatch & Forward current message
+		DispatchMessage(&msg);
+	}
+
+
 
 	return 0;
 }
