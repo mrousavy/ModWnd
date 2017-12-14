@@ -24,6 +24,8 @@ int main(const int argc, char** argv)
 	captain_hook hook(hotkey);
 	std::thread thread([&hook]()
 	{
+		// TODO: 
+		SetPriorityClass(GetCurrentThread(), REALTIME_PRIORITY_CLASS);
 		hook.register_m();
 	});
 	hook.start();

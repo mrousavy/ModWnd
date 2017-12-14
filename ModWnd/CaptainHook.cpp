@@ -78,7 +78,6 @@ LRESULT CALLBACK captain_hook::mouse_callback(const int n_code, const WPARAM w_p
 
 		if (w_param == WM_LBUTTONDOWN)	// Is it a mouse click?
 		{
-			return -1;
 			if (instance_->is_down())
 			{
 				return -1;	// Ignore mouse click
