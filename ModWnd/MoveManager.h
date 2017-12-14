@@ -12,9 +12,9 @@ inline void move_wnd(const HWND window, const POINT mouse)
 	POINT client_point(mouse);
 	ScreenToClient(window, &client_point);
 
-	const int to_x = mouse.x + client_point.x;
-	const int to_y = mouse.y + client_point.y;
+	const int to_x = mouse.x;// +client_point.x;
+	const int to_y = mouse.y;// +client_point.y;
 
 	//SetWindowPos(window, nullptr, to_x, to_y, 0, 0, SWP_NOREDRAW | SWP_NOSIZE);
-	MoveWindow(window, to_x, to_y, rect.right - rect.left, rect.bottom - rect.top, false);
+	MoveWindow(window, to_x, to_y, rect.right - rect.left, rect.bottom - rect.top, true);
 }

@@ -46,6 +46,7 @@ void captain_hook::loop() const
 			const HWND window = WindowFromPoint(point);	// Get window handle from mouse
 			if (window)
 			{
+				SetCapture(window);	// Capture mouse
 				EnableWindow(window, false); // Disable click passthrough
 				while (is_down())	// Loop on held down
 				{
@@ -54,6 +55,7 @@ void captain_hook::loop() const
 					//Sleep(1);
 				}
 				EnableWindow(window, true);	// Enable click passthrough
+				ReleaseCapture();
 			}
 		}
 		Sleep(1);

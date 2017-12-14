@@ -13,6 +13,8 @@ int main(const int argc, char** argv)
 		hotkey = atoi(argv[0]);
 		if (hotkey > MAXINT || hotkey < 1)
 			hotkey = VK_MENU;
+		else
+			std::cout << "Moving hotkey bound to keycode " << hotkey << std::endl;
 	}
 
 	// Print Init Message
