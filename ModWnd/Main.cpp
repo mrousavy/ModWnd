@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 	// Hide the Console Window
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 	
-	CaptainHook hook(VK_MENU);
+	captain_hook hook(VK_MENU);
 	hook.start();
 
 	getchar();

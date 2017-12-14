@@ -2,30 +2,30 @@
 #include <iostream>
 #include <Windows.h>
 
-CaptainHook::CaptainHook(int key)
+captain_hook::captain_hook(int key)
 	: hotkey(key)
 {
 }
 
-CaptainHook::~CaptainHook()
+captain_hook::~captain_hook()
 {
 	stop();
 }
 
-void CaptainHook::start()
+void captain_hook::start()
 {
-	run_flag = true;
+	run_flag_ = true;
 	loop();
 }
 
-void CaptainHook::stop()
+void captain_hook::stop()
 {
-	run_flag = false;
+	run_flag_ = false;
 }
 
-void CaptainHook::loop()
+void captain_hook::loop() const
 {
-	while (run_flag)
+	while (run_flag_)
 	{
 		if (GetKeyState(hotkey) & 0x8000)
 		{
