@@ -25,7 +25,9 @@ private:
 	/// \brief Is the hotkey held down
 	bool is_down() const
 	{
-		return GetKeyState(hotkey) & active_flg_;
+		const bool hk = GetKeyState(hotkey) & active_flg_;
+		const bool mb = GetKeyState(VK_LBUTTON) & 0x100;
+		return hk && mb;
 	}
 };
 

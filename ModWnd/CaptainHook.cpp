@@ -32,14 +32,14 @@ void captain_hook::loop() const
 		if (is_down())
 		{
 			POINT point;
-			if (!GetCursorPos(&point))continue;
-			const HWND window = WindowFromPoint(point);
+			if (!GetCursorPos(&point))continue;	// Mouse position
+			const HWND window = WindowFromPoint(point);	// Get window handle from mouse
 			if (window)
 			{
-				while (is_down())
+				while (is_down())	// Loop on held down
 				{
-					move_wnd(window, point.x, point.y);
-					if (!GetCursorPos(&point))break;
+					move_wnd(window, point.x, point.y);	// Move window to ...
+					if (!GetCursorPos(&point))break;	// Update cursor position
 				}
 			}
 		}
