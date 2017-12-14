@@ -22,9 +22,14 @@ private:
 	bool run_flag_ = true;
 	/// \brief The GetKeyState active AND checker
 	int active_flg_ = 0x8000;
-	/// \brief Click the left mouse button
-	void click() const;
 	/// \brief Is the hotkey held down
 	bool is_down() const;
+
+	/// \brief The mouse hook
+	static HHOOK m_hook_;
+	/// \brief An instance of this class
+	static captain_hook* instance_;
+	/// \brief Low level mouse click callback
+	static LRESULT CALLBACK mouse_callback(int n_code, WPARAM w_param, LPARAM l_param);
 };
 

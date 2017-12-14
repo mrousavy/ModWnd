@@ -5,10 +5,19 @@
 captain_hook::captain_hook(const int key)
 	: hotkey(key)
 {
+	// If nothing has hooked yet, hook mouse
+	if (instance_ == nullptr && m_hook_ == nullptr)
+	{
+		SetWindowsHookEx(WH_MOUSE_LL, reinterpret_cast<HOOKPROC>(&mouse_callback), GetModuleHandle(NULL), 0);
+		instance_ = this;
+	}
 }
 
 captain_hook::~captain_hook()
 {
+	instance_ = nullptr;
+	m_hook_ = nullptr;
+	UnhookWindowsHookEx(m_hook_);
 	stop();
 }
 
@@ -49,22 +58,30 @@ void captain_hook::loop() const
 	}
 }
 
-void captain_hook::click() const
-{
-	INPUT input;
-	input.type = INPUT_MOUSE;
-	input.mi.dx = 0;
-	input.mi.dy = 0;
-	input.mi.dwFlags = (MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP);
-	input.mi.mouseData = 0;
-	input.mi.dwExtraInfo = NULL;
-	input.mi.time = 0;
-	SendInput(1, &input, sizeof(INPUT));
-}
-
 bool captain_hook::is_down() const
 {
 	const bool hk = GetKeyState(hotkey) & active_flg_;
 	const bool mb = GetKeyState(VK_LBUTTON) & 0x100;
 	return hk && mb;
+}
+
+
+HHOOK captain_hook::m_hook_;
+captain_hook* captain_hook::instance_;
+LRESULT captain_hook::mouse_callback(const int n_code, const WPARAM w_param, const LPARAM l_param) 
+{
+	if (n_code == HC_ACTION)
+	{
+		MSLLHOOKSTRUCT &msll = *(reinterpret_cast<MSLLHOOKSTRUCT*>(l_param));
+
+		if (w_param == WM_LBUTTONDOWN)	// Is it a mouse click?
+		{
+			if (instance_->is_down())
+			{
+				return -1;	// Ignore mouse click
+			}
+		}
+	}
+
+	return CallNextHookEx(m_hook_, n_code, w_param, l_param); // Pass to next handlers
 }
