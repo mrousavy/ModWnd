@@ -1,19 +1,16 @@
 #pragma once
 #include <Windows.h>
 
-/// \brief A Move Manager for handling window movements
-class move_manager
+/// \brief Move the given Window (by handle) to the specified position
+/// \param window A handle to the Window
+/// \param x The X coordinate in pixels
+/// \param y The Y coordinate in pixels
+inline void move(const HWND window, const int x, const int y)
 {
-public:
-	/// \brief Initialize a new move manager and hook to modifier key down
-	explicit move_manager();
-	/// \brief Delete this move manager and unhook any key down
-	~move_manager();
-private:
-	/// \brief Move the given Window (by handle) to the specified position
-	/// \param window A handle to the Window
-	/// \param x The X coordinate in pixels
-	/// \param y The Y coordinate in pixels
-	static void move(HWND window, int x, int y);
-};
+	RECT rect;
+	GetWindowRect(window, &rect);
+	const int width = rect.right - rect.left;
+	const int height = rect.bottom - rect.top;
 
+	MoveWindow(window, x, y, width, height, true);
+}
