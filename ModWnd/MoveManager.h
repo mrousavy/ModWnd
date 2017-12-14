@@ -5,7 +5,7 @@
 /// \param window A handle to the Window
 /// \param x The X coordinate in pixels
 /// \param y The Y coordinate in pixels
-inline void move(const HWND window, const int x, const int y)
+inline void move_wnd(const HWND window, const int x, const int y)
 {
 	RECT rect;
 	GetWindowRect(window, &rect);
