@@ -22,6 +22,7 @@ int main(const int argc, char** argv)
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	captain_hook hook(hotkey);
+	hook.start();	//TODO: BLOCKING
 	hook.register_m();
 	
 	MSG msg;

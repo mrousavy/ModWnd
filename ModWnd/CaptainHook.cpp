@@ -42,18 +42,15 @@ void captain_hook::loop() const
 		if (is_down())
 		{
 			POINT point;
-			POINT client_point;
 			if (!GetCursorPos(&point)) continue;	// Mouse position
 			const HWND window = WindowFromPoint(point);	// Get window handle from mouse
 			if (window)
 			{
-				if (!ScreenToClient(window, &client_point)) continue;
 				EnableWindow(window, false); // Disable click passthrough
 				while (is_down())	// Loop on held down
 				{
-					move_wnd(window, point.x, point.y, client_point.x, client_point.y);	// Move window to ...
+					move_wnd(window, point.x, point.y);	// Move window to ...
 					if (!GetCursorPos(&point)) break;	// Update cursor position
-					if (!ScreenToClient(window, &client_point)) break;	// Update Client Cursor position
 				}
 				EnableWindow(window, true);	// Enable click passthrough
 			}
