@@ -13,6 +13,8 @@ public:
 	void start();
 	/// \brief Stop the hook loop
 	void stop();
+	/// \brief Register mouse hook
+	static void register_m();
 	/// \brief The Hotkey to bind to
 	int hotkey;
 private:

@@ -5,12 +5,7 @@
 captain_hook::captain_hook(const int key)
 	: hotkey(key)
 {
-	// If nothing has hooked yet, hook mouse
-	if (instance_ == nullptr && m_hook_ == nullptr)
-	{
-		SetWindowsHookEx(WH_MOUSE_LL, reinterpret_cast<HOOKPROC>(&mouse_callback), GetModuleHandle(NULL), 0);
-		instance_ = this;
-	}
+	instance_ = this;
 }
 
 captain_hook::~captain_hook()
@@ -30,6 +25,12 @@ void captain_hook::start()
 void captain_hook::stop()
 {
 	run_flag_ = false;
+}
+
+void captain_hook::register_m()
+{
+	// If nothing has hooked yet, hook mouse
+	SetWindowsHookEx(WH_MOUSE_LL, reinterpret_cast<HOOKPROC>(&mouse_callback), GetModuleHandle(nullptr), 0);
 }
 
 void captain_hook::loop() const
@@ -66,9 +67,10 @@ bool captain_hook::is_down() const
 }
 
 
+#pragma region Mouse
 HHOOK captain_hook::m_hook_;
 captain_hook* captain_hook::instance_;
-LRESULT captain_hook::mouse_callback(const int n_code, const WPARAM w_param, const LPARAM l_param) 
+LRESULT CALLBACK captain_hook::mouse_callback(const int n_code, const WPARAM w_param, const LPARAM l_param) 
 {
 	if (n_code == HC_ACTION)
 	{
@@ -76,6 +78,7 @@ LRESULT captain_hook::mouse_callback(const int n_code, const WPARAM w_param, con
 
 		if (w_param == WM_LBUTTONDOWN)	// Is it a mouse click?
 		{
+			return -1;
 			if (instance_->is_down())
 			{
 				return -1;	// Ignore mouse click
@@ -85,3 +88,4 @@ LRESULT captain_hook::mouse_callback(const int n_code, const WPARAM w_param, con
 
 	return CallNextHookEx(m_hook_, n_code, w_param, l_param); // Pass to next handlers
 }
+#pragma endregion 
