@@ -22,7 +22,7 @@ int main(const int argc, char** argv)
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	captain_hook hook(hotkey);
-	std::thread thread([hook]()
+	std::thread thread([&hook]()
 	{
 		hook.register_m();
 	});

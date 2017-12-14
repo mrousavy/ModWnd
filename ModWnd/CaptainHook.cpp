@@ -30,7 +30,7 @@ void captain_hook::stop()
 void captain_hook::register_m()
 {
 	// If nothing has hooked yet, hook mouse
-	SetWindowsHookEx(WH_MOUSE_LL, reinterpret_cast<HOOKPROC>(&mouse_callback), GetModuleHandle(nullptr), 0);
+	SetWindowsHookEx(WH_MOUSE_LL, mouse_callback, GetModuleHandle(nullptr), 0);
 }
 
 void captain_hook::loop() const
