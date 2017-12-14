@@ -1,4 +1,5 @@
 #pragma once
+#include "MoveManager.h"
 
 class captain_hook
 {
@@ -19,5 +20,12 @@ private:
 	void loop() const;
 	/// \brief Flag indicating the loop should still run
 	bool run_flag_ = true;
+	/// \brief The GetKeyState active AND checker
+	int active_flg_ = 0x8000;
+	/// \brief Is the hotkey held down
+	bool is_down() const
+	{
+		return GetKeyState(hotkey) & active_flg_;
+	}
 };
 
