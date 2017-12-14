@@ -22,12 +22,9 @@ private:
 	bool run_flag_ = true;
 	/// \brief The GetKeyState active AND checker
 	int active_flg_ = 0x8000;
+	/// \brief Click the left mouse button
+	void click() const;
 	/// \brief Is the hotkey held down
-	bool is_down() const
-	{
-		const bool hk = GetKeyState(hotkey) & active_flg_;
-		const bool mb = GetKeyState(VK_LBUTTON) & 0x100;
-		return hk && mb;
-	}
+	bool is_down() const;
 };
 
